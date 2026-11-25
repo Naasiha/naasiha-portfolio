@@ -530,6 +530,22 @@ body.inner .site-nav a:hover::after { transform: scaleX(1); }
 .journey strong { font-size: clamp(1.05rem, 1.6vw, 1.3rem); letter-spacing: -.03em; }
 .journey p { color: var(--muted); line-height: 1.55; }
 .journey .eyebrow { color: var(--accent); }
+/* case-study galleries: tidy uniform grid like the product images page */
+.gallery-grid.tiles { --gap: 14px; display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 18px var(--gap); }
+.gallery-grid.tiles figure { flex: 0 0 calc((100% - 3 * var(--gap)) / 4); min-width: 0; }
+.gallery-grid.tiles figure.tile-wide { flex-basis: calc((100% - var(--gap)) / 2); }
+.gallery-grid.tiles figure.tile-full { flex-basis: 100%; }
+.gallery-grid.tiles .tile-break { flex-basis: 100%; height: 0; margin-top: -18px; }
+.gallery-grid.tiles .gallery-link { min-height: 0; aspect-ratio: var(--tile-ratio, .75); }
+.gallery-grid.tiles .tile-wide .gallery-link { aspect-ratio: var(--wide-ratio, 1.78); }
+.gallery-grid.tiles .tile-full .gallery-link { aspect-ratio: auto; }
+.gallery-grid.tiles .gallery-link img { width: 100%; height: 100%; max-height: none; object-fit: contain; }
+.gallery-grid.tiles figcaption { font-size: .62rem; }
+@media (max-width: 830px) {
+  .gallery-grid.tiles { --gap: 10px; }
+  .gallery-grid.tiles figure { flex-basis: calc((100% - var(--gap)) / 2); }
+  .gallery-grid.tiles figure.tile-wide { flex-basis: 100%; }
+}
 @media (max-width: 900px) {
   .results-grid { grid-template-columns: 1fr; }
   .approach { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -1316,6 +1332,28 @@ document.querySelectorAll('[data-img]').forEach(i=>i.src=IMG[i.dataset.img]);
 document.querySelectorAll('[data-href]').forEach(a=>a.href=IMG[a.dataset.href]);
 const cvPdf=document.querySelector('a[download="Naasiha-Nazar-CV.pdf"]');
 if(cvPdf) document.querySelectorAll('[data-cv-download]').forEach(a=>{a.href=cvPdf.href; a.download=cvPdf.download;});
+// Arrange case-study artwork into a uniform grid: portrait pieces first, then wide banners, then extra-wide signs
+document.querySelectorAll('.gallery-grid:not(.compact)').forEach(grid=>{
+  const groups={tall:[],wide:[],full:[]};
+  grid.querySelectorAll(':scope > figure').forEach(fig=>{
+    const img=fig.querySelector('img'); const r=(+img.getAttribute('width'))/(+img.getAttribute('height'))||.75;
+    fig.classList.remove('gallery-wide');
+    const kind=r>=2.4?'full':r>=1.15?'wide':'tall';
+    if(kind!=='tall') fig.classList.add('tile-'+kind);
+    groups[kind].push({fig,r});
+  });
+  const median=list=>{const s=list.map(g=>g.r).sort((a,b)=>a-b); return s[Math.floor(s.length/2)];};
+  if(groups.tall.length) grid.style.setProperty('--tile-ratio', median(groups.tall));
+  if(groups.wide.length) grid.style.setProperty('--wide-ratio', median(groups.wide));
+  // each shape gets its own rows; a break keeps tall and wide pieces from sharing a row
+  let first=true;
+  for(const list of [groups.tall,groups.wide,groups.full]){
+    if(!list.length) continue;
+    if(!first){const br=document.createElement('span'); br.className='tile-break'; br.setAttribute('aria-hidden','true'); grid.appendChild(br);}
+    list.forEach(g=>grid.appendChild(g.fig)); first=false;
+  }
+  grid.classList.add('tiles');
+});
 
 // Lenis smooth scrolling (skipped for reduced motion or if the CDN script failed to load)
 const lenis = (window.Lenis && !matchMedia('(prefers-reduced-motion: reduce)').matches)
