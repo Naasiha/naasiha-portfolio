@@ -530,6 +530,30 @@ body.inner .site-nav a:hover::after { transform: scaleX(1); }
 .journey strong { font-size: clamp(1.05rem, 1.6vw, 1.3rem); letter-spacing: -.03em; }
 .journey p { color: var(--muted); line-height: 1.55; }
 .journey .eyebrow { color: var(--accent); }
+/* selected work: dark section with case-study cards */
+.work-dark { --line: #4d423a; background: var(--ink); color: var(--white); }
+.work-dark .section-heading p { color: #cdbfb4; }
+.work-dark .project-archive a:hover { color: var(--light-accent); background: #221d1a; }
+.work-dark .archive-type { color: #b9aca2; }
+.work-dark + .results { border-top: 1px solid #3a322d; }
+.work-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); }
+.work-card { min-width: 0; }
+.work-card-link { display: flex; flex-direction: column; height: 100%; overflow: hidden; border: 1px solid #3a322d; border-radius: 12px; background: #201b18; color: var(--white); text-decoration: none; transition: border-color .3s, transform .45s var(--ease); }
+.work-card-link:hover { border-color: #6a5a50; transform: translateY(-3px); }
+.work-card-media { position: relative; aspect-ratio: 2 / 1; overflow: hidden; background: #2a2421; }
+.work-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+.work-card-link:hover .work-card-media img { transform: scale(1.05); }
+.work-card-media .project-index { top: 12px; left: 12px; }
+.work-card-block { display: flex; align-items: center; padding: 0 clamp(20px, 2.4vw, 34px); background: #d95f45; }
+.work-card-block strong { max-width: 9ch; color: #1b1310; font-size: clamp(2rem, 3.6vw, 3.6rem); font-weight: 800; line-height: .98; letter-spacing: -.07em; }
+.work-card-block .project-index { color: #1b1310; background: #ffffff38; border-color: #1b131030; }
+.work-card-body { display: flex; flex-direction: column; flex: 1; padding: clamp(20px, 2.2vw, 30px); }
+.work-card-body h3 { font-size: clamp(1.45rem, 2.3vw, 2.1rem); line-height: 1.05; letter-spacing: -.055em; }
+.work-card-body p { margin-top: 12px; color: #cfc2b8; line-height: 1.6; }
+.work-card-cta { width: fit-content; margin-top: auto; padding-top: 22px; font-weight: 650; text-decoration: underline; text-underline-offset: .32em; text-decoration-thickness: 1px; transition: color .25s; }
+.work-card-link:hover .work-card-cta { color: var(--light-accent); }
+@media (max-width: 980px) { .work-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px) { .work-cards { grid-template-columns: 1fr; } }
 /* case-study galleries: tidy uniform grid like the product images page */
 .gallery-grid.tiles { --gap: 14px; display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 18px var(--gap); }
 .gallery-grid.tiles figure { flex: 0 0 calc((100% - 3 * var(--gap)) / 4); min-width: 0; }
@@ -622,60 +646,42 @@ body.inner .site-nav a:hover::after { transform: scaleX(1); }
       <div class="tools reveal"><h3 class="eyebrow"><span class="signal"></span> Tools I use every day</h3><ul><li>Canva</li><li>CapCut</li><li>Meta Ads Manager</li><li>TikTok Ads Manager</li><li>Google Business Profile</li><li>Metricool</li><li>Instagram</li><li>TikTok</li><li>Facebook</li><li>YouTube</li><li>Excel & Google Sheets</li><li>SAS</li><li>R</li><li>SQL</li><li>Python</li></ul></div>
     </section>
 
-    <section class="work section-pad" id="work" aria-labelledby="work-title">
+    <section class="work work-dark section-pad" id="work" aria-labelledby="work-title">
       <div class="section-line eyebrow"><span><span class="signal"></span> 02 / Selected work</span><span>Five case studies</span></div>
       <div class="section-heading reveal">
         <h2 id="work-title">Selected work<span class="accent">.</span></h2>
         <p>Campaigns I planned, led and delivered, from multi-store launches to national brand standards.</p>
       </div>
 
-      <div class="project-grid">
-        <article class="project project-featured reveal">
-          <a class="project-link" href="#p-openings">
-            <div class="project-art opening-art">
-              <img class="opening-stage" data-img="openings-02.webp" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
-              <img class="opening-poster opening-poster-back" data-img="openings-01.webp" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
-              <img class="opening-poster opening-poster-front" data-img="openings-03.webp" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
-              <span class="project-index eyebrow">01 / Store launches</span>
-              <span class="project-highlight"><strong>£6,500</strong><span class="eyebrow">Opening-day revenue</span></span>
-            </div>
-            <div class="project-caption"><div><h3>Multi-location store launch strategy</h3><p>Campaign management · PR · Franchise coordination · 6 launches &amp; events</p></div><span class="round-arrow" aria-hidden="true">↗</span></div>
+      <div class="work-cards">
+        <article class="work-card reveal">
+          <a class="work-card-link" href="#p-openings">
+            <div class="work-card-media"><img data-img="openings-02.webp" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" style="object-position:50% 60%"><span class="project-index eyebrow">01 / Store launches</span></div>
+            <div class="work-card-body"><h3>Multi-location store launches</h3><p>£6,500 opening-day revenue in Wellingborough. Six launches and anniversary events delivered.</p><span class="work-card-cta">Read the store launch case study</span></div>
           </a>
         </article>
-        <article class="project reveal">
-          <a class="project-link" href="#p-seasonal">
-            <div class="project-art standard-art stack-art seasonal-art">
-              <img class="s1 wide" data-img="seasonal-02.webp" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""><img class="s2 wide" data-img="seasonal-01.webp" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
-              <span class="project-index eyebrow">02 / Product innovation</span>
-            </div>
-            <div class="project-caption"><div><h3>Halloween &amp; Christmas: concept to market</h3><p>Product development · Social performance · Global adoption</p></div><span class="round-arrow" aria-hidden="true">↗</span></div>
+        <article class="work-card reveal">
+          <a class="work-card-link" href="#p-seasonal">
+            <div class="work-card-media work-card-block"><strong>Halloween &amp; Christmas</strong><span class="project-index eyebrow">02 / Product innovation</span></div>
+            <div class="work-card-body"><h3>Seasonal product launches</h3><p>Limited-edition concepts adapted by Chicking and shared with other markets.</p><span class="work-card-cta">Read the seasonal case study</span></div>
           </a>
         </article>
-        <article class="project reveal">
-          <a class="project-link" href="#p-product-imagery">
-            <div class="project-art standard-art stack-art hero-art-card">
-              <img class="s1" data-img="product-creative-06.webp" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""><img class="s2" data-img="product-creative-01.webp" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""><img class="s3" data-img="product-creative-09.webp" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
-              <span class="project-index eyebrow">03 / Brand</span>
-            </div>
-            <div class="project-caption"><div><h3>National brand transformation</h3><p>Creative direction · Brand consistency · 100+ product images</p></div><span class="round-arrow" aria-hidden="true">↗</span></div>
+        <article class="work-card reveal">
+          <a class="work-card-link" href="#p-product-imagery">
+            <div class="work-card-media"><img data-img="product-imagery-01.webp" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""><span class="project-index eyebrow">03 / Brand</span></div>
+            <div class="work-card-body"><h3>National brand transformation</h3><p>100+ product images and consistent brand assets across menus, digital and print.</p><span class="work-card-cta">Read the brand case study</span></div>
           </a>
         </article>
-        <article class="project reveal">
-          <a class="project-link" href="#p-app-launch">
-            <div class="project-art standard-art stack-art app-art">
-              <img class="s1" data-img="app-launch-02.webp" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""><img class="s2" data-img="app-launch-01.webp" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""><img class="s3" data-img="app-launch-03.webp" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
-              <span class="project-index eyebrow">04 / Customer acquisition</span>
-            </div>
-            <div class="project-caption"><div><h3>App launch &amp; customer acquisition</h3><p>Digital marketing · Direct-order strategy</p></div><span class="round-arrow" aria-hidden="true">↗</span></div>
+        <article class="work-card reveal">
+          <a class="work-card-link" href="#p-app-launch">
+            <div class="work-card-media"><img data-img="app-launch-02.webp" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" style="object-position:50% 22%"><span class="project-index eyebrow">04 / Customer acquisition</span></div>
+            <div class="work-card-body"><h3>App launch &amp; customer acquisition</h3><p>A 5 wings for £1 first-order offer and in-store QR posters to drive direct app orders.</p><span class="work-card-cta">Read the app case study</span></div>
           </a>
         </article>
-        <article class="project reveal">
-          <a class="project-link" href="#p-oceans-fresh">
-            <div class="project-art freelance-art">
-              <img data-img="oceans-fresh-01.webp" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
-              <span class="project-index eyebrow">05 / Freelance</span>
-            </div>
-            <div class="project-caption"><div><h3>Oceans Fresh shopfront identity</h3><p>Freelance · Retail branding · Large-format print</p></div><span class="round-arrow" aria-hidden="true">↗</span></div>
+        <article class="work-card reveal">
+          <a class="work-card-link" href="#p-oceans-fresh">
+            <div class="work-card-media"><img data-img="oceans-fresh-01.webp" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" style="object-position:50% 35%"><span class="project-index eyebrow">05 / Freelance</span></div>
+            <div class="work-card-body"><h3>Oceans Fresh shopfront identity</h3><p>Freelance retail branding: an illuminated lightboard sign and window graphics for a new Newport shop.</p><span class="work-card-cta">Read the freelance case study</span></div>
           </a>
         </article>
       </div>
