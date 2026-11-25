@@ -550,11 +550,17 @@ button.text-link { margin-right: 26px; padding: 0; border: 0; background: none; 
 .work-dark .project-archive a:hover { color: var(--light-accent); background: #221d1a; }
 .work-dark .archive-type { color: #b9aca2; }
 .work-dark + .results { border-top: 1px solid #3a322d; }
+.work-dark.section-pad { padding-top: clamp(48px, 5vw, 84px); }
+.work-dark .section-heading { margin: clamp(18px, 2.4vw, 36px) 0 clamp(20px, 2.4vw, 34px); }
+.work-dark .section-heading h2 { font-size: clamp(3rem, 6.5vw, 6.4rem); }
+.work-card-result { display: flex; align-items: baseline; gap: 8px; margin-top: 10px !important; color: #e3d6cc !important; font-weight: 650; }
+.work-card-result strong { color: var(--light-accent); font-size: clamp(1.5rem, 2.2vw, 2rem); font-weight: 800; letter-spacing: -.06em; line-height: 1; }
+.work-card-result + p { margin-top: 8px; }
 .work-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); }
 .work-card { min-width: 0; }
 .work-card-link { display: flex; flex-direction: column; height: 100%; overflow: hidden; border: 1px solid #3a322d; border-radius: 12px; background: #201b18; color: var(--white); text-decoration: none; transition: border-color .3s, transform .45s var(--ease); }
 .work-card-link:hover { border-color: #6a5a50; transform: translateY(-3px); }
-.work-card-media { position: relative; aspect-ratio: 2 / 1; overflow: hidden; background: #2a2421; }
+.work-card-media { position: relative; aspect-ratio: 5 / 2; overflow: hidden; background: #2a2421; }
 .work-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
 .work-card-link:hover .work-card-media img { transform: scale(1.05); }
 .work-card-media .project-index { top: 12px; left: 12px; }
@@ -610,9 +616,9 @@ button.text-link { margin-right: 26px; padding: 0; border: 0; background: none; 
     <a class="wordmark" href="#home" aria-label="Naasiha Nazar, home">naasiha<span>.</span></a>
     <nav class="site-nav" id="site-nav" aria-label="Main navigation">
       <a href="#home" aria-current="location">Home</a>
-      <a href="#services">What I do</a>
       <a href="#work">Work</a>
       <a href="#results">Results</a>
+      <a href="#services">What I do</a>
       <a href="#about">About</a>
       <a href="#cv">CV</a>
     </nav>
@@ -649,18 +655,8 @@ button.text-link { margin-right: 26px; padding: 0; border: 0; background: none; 
       </div>
     </section>
 
-    <section class="services section-pad" id="services" aria-labelledby="services-title">
-      <div class="section-line eyebrow"><span><span class="signal"></span> 01 / What I do</span><span>Services &amp; skills</span></div>
-      <div class="section-heading reveal">
-        <h2 id="services-title">What I do<span class="accent">.</span></h2>
-        <p>Strategy, commercial planning and stakeholder management, with hands-on creative skills to deliver it.</p>
-      </div>
-      <div class="svc-grid"><article class="svc reveal"><span class="eyebrow svc-n">01</span><h3>Campaign strategy &amp; launches</h3><p>I coordinate multi-location campaigns across the UK, from concept and planning through creative execution to performance review: store openings, seasonal launches, new menus and offers.</p><ul class="svc-tags"><li>Promotional calendars</li><li>Store launches</li><li>Seasonal campaigns</li></ul></article><article class="svc reveal"><span class="eyebrow svc-n">02</span><h3>Commercial &amp; performance marketing</h3><p>I develop offers that drive footfall, new customers and repeat visits, benchmark pricing against competitors, plan paid media budgets and run launch ads on Meta and TikTok.</p><ul class="svc-tags"><li>Offer development</li><li>Competitor pricing</li><li>Paid social</li></ul></article><article class="svc reveal"><span class="eyebrow svc-n">03</span><h3>Franchise marketing &amp; stakeholders</h3><p>As the main marketing contact for all 26 UK stores, I work with franchise owners, head office, agencies and suppliers, adapting campaigns locally while keeping national brand standards.</p><ul class="svc-tags"><li>Franchise comms</li><li>Local store plans</li><li>Supplier management</li></ul></article><article class="svc reveal"><span class="eyebrow svc-n">04</span><h3>Product innovation &amp; go-to-market</h3><p>I come up with limited-edition product ideas and take them from concept to launch: positioning, visual identity, store rollout and customer-facing communications.</p><ul class="svc-tags"><li>Limited editions</li><li>Positioning</li><li>Launch planning</li></ul></article><article class="svc reveal"><span class="eyebrow svc-n">05</span><h3>PR, partnerships &amp; local growth</h3><p>I build local awareness through press and radio, creator partnerships, student and community promotions, and optimised Google Business Profiles so people nearby find us first.</p><ul class="svc-tags"><li>Media relations</li><li>Creator partnerships</li><li>Local SEO</li></ul></article><article class="svc reveal"><span class="eyebrow svc-n">06</span><h3>Creative direction &amp; content</h3><p>I plan, script and direct content shoots, and set the brand&#x27;s visual standard across TV menus, menu boards, app, web, social and print, producing assets hands-on where speed matters.</p><ul class="svc-tags"><li>Content production</li><li>Product imagery</li><li>Brand consistency</li></ul></article></div>
-      <div class="tools reveal"><h3 class="eyebrow"><span class="signal"></span> Tools I use every day</h3><ul><li>Canva</li><li>CapCut</li><li>Meta Ads Manager</li><li>TikTok Ads Manager</li><li>Google Business Profile</li><li>Metricool</li><li>Instagram</li><li>TikTok</li><li>Facebook</li><li>YouTube</li><li>Excel & Google Sheets</li><li>SAS</li><li>R</li><li>SQL</li><li>Python</li></ul></div>
-    </section>
-
     <section class="work work-dark section-pad" id="work" aria-labelledby="work-title">
-      <div class="section-line eyebrow"><span><span class="signal"></span> 02 / Selected work</span><span>Five case studies</span></div>
+      <div class="section-line eyebrow"><span><span class="signal"></span> 01 / Selected work</span><span>Five case studies</span></div>
       <div class="section-heading reveal">
         <h2 id="work-title">Selected work<span class="accent">.</span></h2>
         <p>Campaigns I planned, led and delivered, from multi-store launches to national brand standards.</p>
@@ -670,19 +666,19 @@ button.text-link { margin-right: 26px; padding: 0; border: 0; background: none; 
         <article class="work-card reveal">
           <a class="work-card-link" href="#p-openings">
             <div class="work-card-media"><img data-img="openings-02.webp" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" style="object-position:50% 60%"><span class="project-index eyebrow">01 / Store launches</span></div>
-            <div class="work-card-body"><h3>Multi-location store launches</h3><p>£6,500 opening-day revenue in Wellingborough. Six launches and anniversary events delivered.</p><span class="work-card-cta">Read the store launch case study</span></div>
+            <div class="work-card-body"><h3>Multi-location store launches</h3><p class="work-card-result"><strong>£6,500</strong> opening-day revenue</p><p>Wellingborough opening, one of six launches and anniversary events delivered.</p><span class="work-card-cta">Read the store launch case study</span></div>
           </a>
         </article>
         <article class="work-card reveal">
           <a class="work-card-link" href="#p-seasonal">
             <div class="work-card-media"><img data-img="seasonal-01.webp" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" style="object-position:50% 50%"><span class="project-index eyebrow">02 / Product innovation</span></div>
-            <div class="work-card-body"><h3>Seasonal product launches</h3><p>Limited-edition concepts adapted by Chicking and shared with other markets.</p><span class="work-card-cta">Read the seasonal case study</span></div>
+            <div class="work-card-body"><h3>Seasonal product launches</h3><p class="work-card-result"><strong>+44.5%</strong> Instagram views</p><p>Limited-edition concepts adapted by Chicking and shared with other markets.</p><span class="work-card-cta">Read the seasonal case study</span></div>
           </a>
         </article>
         <article class="work-card reveal">
           <a class="work-card-link" href="#p-product-imagery">
             <div class="work-card-media"><img data-img="product-imagery-01.webp" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""><span class="project-index eyebrow">03 / Brand</span></div>
-            <div class="work-card-body"><h3>National brand transformation</h3><p>100+ product images and consistent brand assets across menus, digital and print.</p><span class="work-card-cta">Read the brand case study</span></div>
+            <div class="work-card-body"><h3>National brand transformation</h3><p class="work-card-result"><strong>100+</strong> product images</p><p>Consistent brand assets across menus, digital and print in every UK store.</p><span class="work-card-cta">Read the brand case study</span></div>
           </a>
         </article>
         <article class="work-card reveal">
@@ -714,7 +710,7 @@ button.text-link { margin-right: 26px; padding: 0; border: 0; background: none; 
     </section>
 
     <section class="process results section-pad" id="results" aria-labelledby="results-title">
-      <div class="section-line eyebrow"><span><span class="signal"></span> 03 / Performance &amp; results</span><span>Launches · Social · Search · PR</span></div>
+      <div class="section-line eyebrow"><span><span class="signal"></span> 02 / Performance &amp; results</span><span>Launches · Social · Search · PR</span></div>
       <div class="section-heading reveal">
         <h2 id="results-title">Results<span class="accent">.</span></h2>
         <p style="color:#cdbfb4">The commercial and audience impact behind the work.</p>
@@ -752,6 +748,16 @@ button.text-link { margin-right: 26px; padding: 0; border: 0; background: none; 
       <span>Brand strategy <b>✳</b> Campaign management <b>✳</b> Product innovation <b>✳</b> Franchise marketing <b>✳</b> Digital growth <b>✳</b> Consumer insight <b>✳</b></span>
       <span>Brand strategy <b>✳</b> Campaign management <b>✳</b> Product innovation <b>✳</b> Franchise marketing <b>✳</b> Digital growth <b>✳</b> Consumer insight <b>✳</b></span>
     </div></div>
+
+    <section class="services section-pad" id="services" aria-labelledby="services-title">
+      <div class="section-line eyebrow"><span><span class="signal"></span> 03 / What I do</span><span>Services &amp; skills</span></div>
+      <div class="section-heading reveal">
+        <h2 id="services-title">What I do<span class="accent">.</span></h2>
+        <p>Strategy, commercial planning and stakeholder management, with hands-on creative skills to deliver it.</p>
+      </div>
+      <div class="svc-grid"><article class="svc reveal"><span class="eyebrow svc-n">01</span><h3>Campaign strategy &amp; launches</h3><p>I coordinate multi-location campaigns across the UK, from concept and planning through creative execution to performance review: store openings, seasonal launches, new menus and offers.</p><ul class="svc-tags"><li>Promotional calendars</li><li>Store launches</li><li>Seasonal campaigns</li></ul></article><article class="svc reveal"><span class="eyebrow svc-n">02</span><h3>Commercial &amp; performance marketing</h3><p>I develop offers that drive footfall, new customers and repeat visits, benchmark pricing against competitors, plan paid media budgets and run launch ads on Meta and TikTok.</p><ul class="svc-tags"><li>Offer development</li><li>Competitor pricing</li><li>Paid social</li></ul></article><article class="svc reveal"><span class="eyebrow svc-n">03</span><h3>Franchise marketing &amp; stakeholders</h3><p>As the main marketing contact for all 26 UK stores, I work with franchise owners, head office, agencies and suppliers, adapting campaigns locally while keeping national brand standards.</p><ul class="svc-tags"><li>Franchise comms</li><li>Local store plans</li><li>Supplier management</li></ul></article><article class="svc reveal"><span class="eyebrow svc-n">04</span><h3>Product innovation &amp; go-to-market</h3><p>I come up with limited-edition product ideas and take them from concept to launch: positioning, visual identity, store rollout and customer-facing communications.</p><ul class="svc-tags"><li>Limited editions</li><li>Positioning</li><li>Launch planning</li></ul></article><article class="svc reveal"><span class="eyebrow svc-n">05</span><h3>PR, partnerships &amp; local growth</h3><p>I build local awareness through press and radio, creator partnerships, student and community promotions, and optimised Google Business Profiles so people nearby find us first.</p><ul class="svc-tags"><li>Media relations</li><li>Creator partnerships</li><li>Local SEO</li></ul></article><article class="svc reveal"><span class="eyebrow svc-n">06</span><h3>Creative direction &amp; content</h3><p>I plan, script and direct content shoots, and set the brand&#x27;s visual standard across TV menus, menu boards, app, web, social and print, producing assets hands-on where speed matters.</p><ul class="svc-tags"><li>Content production</li><li>Product imagery</li><li>Brand consistency</li></ul></article></div>
+      <div class="tools reveal"><h3 class="eyebrow"><span class="signal"></span> Tools I use every day</h3><ul><li>Canva</li><li>CapCut</li><li>Meta Ads Manager</li><li>TikTok Ads Manager</li><li>Google Business Profile</li><li>Metricool</li><li>Instagram</li><li>TikTok</li><li>Facebook</li><li>YouTube</li><li>Excel & Google Sheets</li><li>SAS</li><li>R</li><li>SQL</li><li>Python</li></ul></div>
+    </section>
 
     <section class="about section-pad" id="about" aria-labelledby="about-title">
       <div class="section-line eyebrow"><span><span class="signal"></span> 04 / About me</span><span>Psychology + Data + Creative</span></div>
