@@ -43,6 +43,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+html.lenis { scroll-behavior: auto; }
 body { margin: 0; }
 h1, h2, h3, p, figure, ul, ol, dl, dd { margin: 0; }
 a { color: inherit; }
@@ -493,6 +494,8 @@ body.inner .site-nav a:hover::after { transform: scaleX(1); }
 .cv-heading h1 { font-size: clamp(3.3rem, 8.5vw, 9rem); line-height: .91; letter-spacing: -.085em; font-weight: 800; }
 @media (max-width: 620px) { .cv-heading h1 { font-size: clamp(2.5rem, 9vw, 3.5rem); } }
 </style>
+<link rel="stylesheet" href="https://unpkg.com/lenis@1.3.28/dist/lenis.css" integrity="sha256-L2aK6EpmgyfyRvr4p3A4Oiv2kZbSFCkPvE1VSJEGBsU=" crossorigin="anonymous">
+<script src="https://unpkg.com/lenis@1.3.28/dist/lenis.min.js" integrity="sha256-z0QcnN4q8CHh7qF/WolvoTOy2R5zORQBACgm+zHP8Rs=" crossorigin="anonymous"></script>
 </head>
 <body class="home">
   <a class="skip" href="#main">Skip to content</a>
@@ -1255,6 +1258,25 @@ const IMG={"wall/black-friday-03.webp": "data:image/webp;base64,UklGRrrTAABXRUJQ
 document.querySelectorAll('[data-img]').forEach(i=>i.src=IMG[i.dataset.img]);
 document.querySelectorAll('[data-href]').forEach(a=>a.href=IMG[a.dataset.href]);
 
+// Lenis smooth scrolling (skipped for reduced motion or if the CDN script failed to load)
+const lenis = (window.Lenis && !matchMedia('(prefers-reduced-motion: reduce)').matches)
+  ? new Lenis({ autoRaf: true, prevent: node => !!node.closest?.('dialog') })
+  : null;
+function jumpTop(){ lenis ? lenis.scrollTo(0,{immediate:true,force:true}) : window.scrollTo(0,0); }
+if (lenis) {
+  // Smooth-scroll in-page links to sections of the page currently shown; page-switching links still go through route()
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a || a.classList.contains('skip') || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const id = decodeURIComponent(a.getAttribute('href').slice(1));
+    const el = id && document.getElementById(id);
+    if (!el || el.closest('.view[hidden]')) return;
+    e.preventDefault();
+    if (location.hash !== '#' + id) history.pushState(null, '', '#' + id);
+    lenis.scrollTo(el);
+  });
+}
+
 const views=[...document.querySelectorAll('.view')];
 function route(){
   const h=location.hash.slice(1);
@@ -1264,9 +1286,9 @@ function route(){
   views.forEach(v=>v.hidden=v!==show);
   document.body.classList.toggle('inner',show!==views[0]);
   document.body.classList.toggle('home',show===views[0]);
-  if(target){window.scrollTo(0,0);}
-  else if(h && h!=='home'){const el=document.getElementById(h); if(el){ if(changed) setTimeout(()=>el.scrollIntoView(),30);} }
-  else if(changed||h==='home'){window.scrollTo(0,0);}
+  if(target){jumpTop();}
+  else if(h && h!=='home'){const el=document.getElementById(h); if(el){ if(changed) setTimeout(()=>lenis ? lenis.scrollTo(el,{immediate:true,force:true}) : el.scrollIntoView(),30);} }
+  else if(changed||h==='home'){jumpTop();}
   window.dispatchEvent(new Event('scroll'));
 }
 window.addEventListener('hashchange',route);route();
